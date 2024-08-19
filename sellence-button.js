@@ -1,5 +1,6 @@
 // Code snippet to add a floating action button to the bottom right of the page
-(function () {
+// https://cdn.jsdelivr.net/gh/DominusDeMachina/sellence-button-test@main/sellence-button.js
+(document.addEventListener('DOMContentLoaded', function () {
   // Load the Google Fonts asynchronously
   const fontLink = document.createElement('link');
   fontLink.href = 'https://fonts.googleapis.com/css?family=Roboto';
@@ -94,5 +95,5 @@
         }
     `;
   document.head.appendChild(style);
-})();
+}))();
 
