@@ -34,8 +34,13 @@
   qrWrapper.className = 'qr-code-wrapper';
   const qrCodeHeaderContainer = document.createElement('div');
   qrCodeHeaderContainer.className = 'qr-code-header-container';
+  qrCodeHeaderContainer.textContent = 'Scan the QR code to text us';
   const qrCodeContainer = document.createElement('div');
   qrCodeContainer.className = 'qr-code';
+  const qrCodeView = document.createElement('div');
+  qrCodeView.className = 'qr-code-view';
+  qrCodeContainer.appendChild(qrCodeView);
+  qrWrapper.appendChild(qrCodeHeaderContainer);
   qrWrapper.appendChild(qrCodeContainer);
   document.body.appendChild(qrWrapper);
 
@@ -49,12 +54,16 @@
       buttonComponent.style.display = 'none';
       const qrWrapperComponent = document.querySelector('.qr-code-wrapper');
       qrWrapperComponent.style.display = 'flex';
+      qrWrapperComponent.addEventListener('click', function () {
+        qrWrapperComponent.style.display = 'none';
+        buttonComponent.style.display = 'flex';
+      })
       
       // Generate QR code
-      const qr = new QRCode(document.querySelector('.qr-code'), {
+      const qr = new QRCode(document.querySelector('.qr-code-view'), {
         text: `sms:${PHONE_NUMBER}&body=`,
-        width: 128,
-        height: 128,
+        width: 225,
+        height: 225,
         colorDark: BACKGROUND_COLOR,
         colorLight: TEXT_COLOR,
         correctLevel: QRCode.CorrectLevel.H,
@@ -141,18 +150,40 @@
     #wrap:hover .text {
         display: inline;
     }
-    qr-code-wrapper {
+    .qr-code-wrapper {
+        height: 311px;
+        width: 329px;
         position: fixed;
-        display: flex;
-        bottom: 200px;
-        right: 180px;
-    }
-    qr-code {
-        position: relative;
-        width: 150px;
-        height: 180px;
-        border-radius: 10px;
+        display: none;
+        flex-direction: column;
+        bottom: 20px;
+        right: 20px;
+        border-radius: 50px;
         border: 2px solid ${BACKGROUND_COLOR};
+    }
+    .qr-code-header-container {
+        background-color: ${BACKGROUND_COLOR};
+        color: ${TEXT_COLOR};
+        padding: 10px;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .qr-code {
+      background-color: ${TEXT_COLOR};
+      flex: 1;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      display: flex;
+      align-items: center;
+      align-content: center;
+    }
+    .qr-code-view {
+        margin: auto;
     }
   `;
   document.head.appendChild(style);
