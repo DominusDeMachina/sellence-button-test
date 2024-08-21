@@ -126,6 +126,7 @@
         right: 20px;
         text-decoration: none;
     }
+    ${!isMobile ? `
     #wrap {
         width: 60px;
         height: 60px;
@@ -138,44 +139,59 @@
         align-items: center;
         transition: 300ms;
     }
+    ` : `
+    #wrap {
+      width: auto;
+      padding: 0 20px;
+      gap: 10px;
+      height: 60px;
+      background-color: ${BACKGROUND_COLOR};
+      border-radius: 30px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    `}
     #wrap .text {
-        color: ${TEXT_COLOR};
-        font-size: 1.8em;
-        display: none;
-        font-family: 'Roboto', sans-serif;
+      color: ${TEXT_COLOR};
+      font-size: 1.8em;
+      display: none;
+      font-family: 'Roboto', sans-serif;
     }
     ${!isMobile ? `
     #wrap:hover {
-        width: auto;
-        padding: 0 20px;
-        gap: 10px;
+      width: auto;
+      padding: 0 20px;
+      gap: 10px;
     }
     #wrap:hover .text {
-        display: inline;
+      display: inline;
     }
     ` : ''}
     .qr-code-wrapper {
-        height: 311px;
-        width: 329px;
-        position: fixed;
-        display: none;
-        flex-direction: column;
-        bottom: 20px;
-        right: 20px;
-        border-radius: 50px;
-        border: 2px solid ${BACKGROUND_COLOR};
+      height: 311px;
+      width: 329px;
+      position: fixed;
+      display: none;
+      flex-direction: column;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 50px;
+      border: 2px solid ${BACKGROUND_COLOR};
     }
     .qr-code-header-container {
-        background-color: ${BACKGROUND_COLOR};
-        color: ${TEXT_COLOR};
-        padding: 10px;
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.2em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      background-color: ${BACKGROUND_COLOR};
+      color: ${TEXT_COLOR};
+      padding: 10px;
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .qr-code {
       background-color: ${TEXT_COLOR};
@@ -187,7 +203,7 @@
       align-content: center;
     }
     .qr-code-view {
-        margin: auto;
+      margin: auto;
     }
   `;
   document.head.appendChild(style);
