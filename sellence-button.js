@@ -6,11 +6,9 @@
   function detectDevice() {
     let ch = false;
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    confirm(navigator.userAgent)
     return regex.test(navigator.userAgent);
   }
   const isMobile = detectDevice()
-  confirm(isMobile)
   // Load the Google Fonts asynchronously
   const fontLink = document.createElement('link');
   fontLink.href = 'https://fonts.googleapis.com/css?family=Roboto';
