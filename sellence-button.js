@@ -50,6 +50,7 @@
   anchor.href = isMobile ? `sms:${PHONE_NUMBER}&body=${MESSAGE_BODY}` : "#";
   anchor.addEventListener('click', function () {
     if (!isMobile) {
+      let qr = null;
       const buttonComponent = document.querySelector('#sellence-button');
       buttonComponent.style.display = 'none';
       const qrWrapperComponent = document.querySelector('.qr-code-wrapper');
@@ -57,10 +58,13 @@
       qrWrapperComponent.addEventListener('click', function () {
         qrWrapperComponent.style.display = 'none';
         buttonComponent.style.display = 'flex';
+        qr?.clean()
       })
       
       // Generate QR code
-      const qr = new QRCode(document.querySelector('.qr-code-view'), {
+      const qrCodeViewComponent = document.querySelector('.qr-code-view');
+      qrCodeViewComponent.innerHTML = '';
+      qr = new QRCode(document.querySelector('.qr-code-view'), {
         text: `sms:${PHONE_NUMBER}&body=`,
         width: 225,
         height: 225,
