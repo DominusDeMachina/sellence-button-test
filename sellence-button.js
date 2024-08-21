@@ -6,6 +6,7 @@
   function detectDevice() {
     let ch = false;
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    confirm(navigator.userAgent)
     return regex.test(navigator.userAgent);
   }
   const isMobile = detectDevice()
