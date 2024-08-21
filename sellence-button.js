@@ -11,6 +11,7 @@
     return ch
   }
   const isMobile = detectDevice();
+  alert(isMobile)
   // Load the Google Fonts asynchronously
   const fontLink = document.createElement('link');
   fontLink.href = 'https://fonts.googleapis.com/css?family=Roboto';
