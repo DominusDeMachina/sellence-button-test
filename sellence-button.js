@@ -144,6 +144,7 @@
         display: none;
         font-family: 'Roboto', sans-serif;
     }
+    ${!isMobile ? `
     #wrap:hover {
         width: auto;
         padding: 0 20px;
@@ -152,6 +153,7 @@
     #wrap:hover .text {
         display: inline;
     }
+    ` : ''}
     .qr-code-wrapper {
         height: 311px;
         width: 329px;
