@@ -157,7 +157,7 @@
     #wrap .text {
       color: ${TEXT_COLOR};
       font-size: 1.8em;
-      display: none;
+      display: ${!isMobile ? `none` : `inline`};
       font-family: 'Roboto', sans-serif;
     }
     ${!isMobile ? `
