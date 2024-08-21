@@ -1,20 +1,22 @@
 // noinspection JSVoidFunctionReturnValueUsed,JSValidateTypes
 
-(document.addEventListener('DOMContentLoaded', function () {
+(function () {
   // Check if the device is mobile
   let a = '';
+
   function detectDevice() {
     let ch = false;
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     return regex.test(navigator.userAgent);
   }
+
   const isMobile = detectDevice()
   // Load the Google Fonts asynchronously
   const fontLink = document.createElement('link');
   fontLink.href = 'https://fonts.googleapis.com/css?family=Roboto';
   fontLink.rel = 'stylesheet';
   document.head.appendChild(fontLink);
-  
+
   //Load QR code library
   const qrScript = document.createElement('script');
   qrScript.src = 'https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js';
@@ -26,7 +28,7 @@
   const BUTTON_TEXT = 'Text Us!';
   const TEXT_COLOR = '#FAFAFA';
   const BACKGROUND_COLOR = '#737373';
-  
+
   // Create QR code wrapper
   const qrWrapper = document.createElement('div');
   qrWrapper.className = 'qr-code-wrapper';
@@ -47,31 +49,30 @@
   anchor.id = 'sellence-button';
   anchor.href = isMobile ? `sms:${PHONE_NUMBER}&body=${MESSAGE_BODY}` : "#";
   anchor.addEventListener('click', function () {
-    if (!isMobile) {
-      let qr = null;
-      const buttonComponent = document.querySelector('#sellence-button');
-      buttonComponent.style.display = 'none';
-      const qrWrapperComponent = document.querySelector('.qr-code-wrapper');
-      qrWrapperComponent.style.display = 'flex';
-      qrWrapperComponent.addEventListener('click', function () {
-        qrWrapperComponent.style.display = 'none';
-        buttonComponent.style.display = 'flex';
-        qr?.clean()
-      })
-      
-      // Generate QR code
-      const qrCodeViewComponent = document.querySelector('.qr-code-view');
-      qrCodeViewComponent.innerHTML = '';
-      qr = new QRCode(document.querySelector('.qr-code-view'), {
-        text: `sms:${PHONE_NUMBER}&body=`,
-        width: 225,
-        height: 225,
-        colorDark: BACKGROUND_COLOR,
-        colorLight: TEXT_COLOR,
-        correctLevel: QRCode.CorrectLevel.H,
-      });
+      if (!isMobile) {
+        let qr = null;
+        const buttonComponent = document.querySelector('#sellence-button');
+        buttonComponent.style.display = 'none';
+        const qrWrapperComponent = document.querySelector('.qr-code-wrapper');
+        qrWrapperComponent.style.display = 'flex';
+        qrWrapperComponent.addEventListener('click', function () {
+          qrWrapperComponent.style.display = 'none';
+          buttonComponent.style.display = 'flex';
+        })
+
+        // Generate QR code
+        const qrCodeViewComponent = document.querySelector('.qr-code-view');
+        qrCodeViewComponent.innerHTML = '';
+        qr = new QRCode(document.querySelector('.qr-code-view'), {
+          text: `sms:${PHONE_NUMBER}&body=`,
+          width: 225,
+          height: 225,
+          colorDark: BACKGROUND_COLOR,
+          colorLight: TEXT_COLOR,
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      }
     }
-  }
   );
 
   // Create the button wrapper
@@ -208,7 +209,4 @@
   `;
   document.head.appendChild(style);
   document.body.appendChild(anchor);
-}))();
-
-
-
+})();
