@@ -13,7 +13,7 @@
   const isMobile = detectDevice()
   // Load the Google Fonts asynchronously
   const fontLink = document.createElement('link');
-  fontLink.href = 'https://fonts.googleapis.com/css?family=Roboto';
+  fontLink.href = 'https://fonts.googleapis.com/css?family=Manrope';
   fontLink.rel = 'stylesheet';
   document.head.appendChild(fontLink);
 
@@ -21,20 +21,44 @@
   const qrScript = document.createElement('script');
   qrScript.src = 'https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js';
   document.head.appendChild(qrScript);
+  
+  const svgNS = "http://www.w3.org/2000/svg";
 
   // Constants can be changed to customize the SMS widget
   const PHONE_NUMBER = '+14158494349';
   const MESSAGE_BODY = '';
-  const BUTTON_TEXT = 'Text Us!';
+  const BUTTON_TEXT = 'Text us';
   const TEXT_COLOR = '#FAFAFA';
-  const BACKGROUND_COLOR = '#737373';
+  const BACKGROUND_COLOR = '#98622B';
 
   // Create QR code wrapper
   const qrWrapper = document.createElement('div');
   qrWrapper.className = 'qr-code-wrapper';
   const qrCodeHeaderContainer = document.createElement('div');
   qrCodeHeaderContainer.className = 'qr-code-header-container';
-  qrCodeHeaderContainer.textContent = 'Scan the QR code to text us';
+  const qrCodeHeaderText = document.createElement('span');
+  qrCodeHeaderText.textContent = 'Scan the QR code to text us';
+  const qrCodeHeaderIcon = document.createElementNS(svgNS, 'svg');
+  qrCodeHeaderIcon.setAttribute("width", "17");
+  qrCodeHeaderContainer.setAttribute("height", "17");
+  qrCodeHeaderIcon.setAttribute("viewBox", "0 0 17 17");
+  qrCodeHeaderIcon.setAttribute("fill", "none");
+  const headerIconPath1 = document.createElementNS(svgNS, 'path');
+  headerIconPath1.setAttribute("d", "M12.5385 4.5L3.53845 13.5");
+  headerIconPath1.setAttribute("stroke", TEXT_COLOR);
+  headerIconPath1.setAttribute("stroke-width", "1.45946");
+  headerIconPath1.setAttribute("stroke-linecap", "round");
+  headerIconPath1.setAttribute("stroke-linejoin", "round");
+  const headerIconPath2 = document.createElementNS(svgNS, 'path');
+  headerIconPath2.setAttribute("d", "M3.53845 4.5L12.5385 13.5");
+  headerIconPath2.setAttribute("stroke", TEXT_COLOR);
+  headerIconPath2.setAttribute("stroke-width", "1.45946");
+  headerIconPath2.setAttribute("stroke-linecap", "round");
+  headerIconPath2.setAttribute("stroke-linejoin", "round");
+  qrCodeHeaderIcon.appendChild(headerIconPath1);
+  qrCodeHeaderIcon.appendChild(headerIconPath2);
+  qrCodeHeaderContainer.appendChild(qrCodeHeaderIcon);
+  qrCodeHeaderContainer.appendChild(qrCodeHeaderText);
   const qrCodeContainer = document.createElement('div');
   qrCodeContainer.className = 'qr-code';
   const qrCodeView = document.createElement('div');
@@ -85,7 +109,6 @@
   buttonText.textContent = BUTTON_TEXT;
 
   // Create the button icon
-  const svgNS = "http://www.w3.org/2000/svg";
   const buttonIcon = document.createElementNS(svgNS, 'svg');
   buttonIcon.setAttribute("width", "44");
   buttonIcon.setAttribute("height", "46");
@@ -129,10 +152,10 @@
     }
     ${!isMobile ? `
     #wrap {
-        width: 60px;
-        height: 60px;
+        width: 62px;
+        height: 62px;
         background-color: ${BACKGROUND_COLOR};
-        border-radius: 30px;
+        border-radius: 62px;
         position: relative;
         cursor: pointer;
         display: flex;
@@ -145,7 +168,7 @@
       width: auto;
       padding: 0 20px;
       gap: 10px;
-      height: 60px;
+      height: 62px;
       background-color: ${BACKGROUND_COLOR};
       border-radius: 30px;
       position: relative;
@@ -157,14 +180,14 @@
     `}
     #wrap .text {
       color: ${TEXT_COLOR};
-      font-size: 1.8em;
+      font-size: 19px;
       display: ${!isMobile ? `none` : `inline`};
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Manrope', sans-serif;
     }
     ${!isMobile ? `
     #wrap:hover {
       width: auto;
-      padding: 0 20px;
+      padding: 0 21px;
       gap: 10px;
     }
     #wrap:hover .text {
@@ -188,11 +211,12 @@
       padding: 10px;
       border-top-left-radius: 50px;
       border-top-right-radius: 50px;
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.2em;
+      font-family: 'Manrope', sans-serif;
+      font-size: 19px;
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 10px;
     }
     .qr-code {
       background-color: ${TEXT_COLOR};
