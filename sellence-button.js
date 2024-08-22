@@ -2,8 +2,6 @@
 
 (function () {
   // Check if the device is mobile
-  let a = '';
-
   function detectDevice() {
     let ch = false;
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -30,6 +28,7 @@
   const BUTTON_TEXT = 'Text us';
   const TEXT_COLOR = '#FAFAFA';
   const BACKGROUND_COLOR = '#98622B';
+  const QR_CODE_COLOR = '#000000';
 
   // Create QR code wrapper
   const qrWrapper = document.createElement('div');
@@ -89,9 +88,9 @@
         qrCodeViewComponent.innerHTML = '';
         qr = new QRCode(document.querySelector('.qr-code-view'), {
           text: `sms:${PHONE_NUMBER}&body=`,
-          width: 225,
-          height: 225,
-          colorDark: BACKGROUND_COLOR,
+          width: 200,
+          height: 200,
+          colorDark: QR_CODE_COLOR,
           colorLight: TEXT_COLOR,
           correctLevel: QRCode.CorrectLevel.H,
         });
